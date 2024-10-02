@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Seat View Renderer</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+  <script>
+    function updateImage() {
+      const section = document.getElementById('section').value;
+      const row = document.getElementById('row').value;
+      const seat = document.getElementById('seat').value;
+      
+      if (section && row && seat) {
+        const imgUrl = `https://mapsapi.tmol.io/maps/geometry/3/event/05005EFFD5906D44/image?systemId=HOST&pw=1&sectionNames=${section}&placeSRS=${section},${row},${seat}`;
+        document.getElementById('seatImage').src = imgUrl;
+        document.getElementById('seatImageContainer').classList.remove('d-none');
+      }
+    }
+  </script>
+</head>
+<body>
+  <div class="container my-4">
+    <h1 class="text-center">Seat View Renderer</h1>
+    <div class="row justify-content-center">
+      <div class="col-md-6">
+        <div class="mb-3">
+          <label for="section" class="form-label">Section</label>
+          <input type="text" class="form-control" id="section" placeholder="Enter Section" oninput="updateImage()">
+        </div>
+        <div class="mb-3">
+          <label for="row" class="form-label">Row</label>
+          <input type="text" class="form-control" id="row" placeholder="Enter Row" oninput="updateImage()">
+        </div>
+        <div class="mb-3">
+          <label for="seat" class="form-label">Seat</label>
+          <input type="text" class="form-control" id="seat" placeholder="Enter Seat" oninput="updateImage()">
+        </div>
+      </div>
+    </div>
+    <div class="row justify-content-center">
+      <div class="col-md-8">
+        <div id="seatImageContainer" class="text-center d-none">
+          <img id="seatImage" class="img-fluid" alt="Seat View" />
+        </div>
+      </div>
+    </div>
+  </div>
+</body>
+</html>
